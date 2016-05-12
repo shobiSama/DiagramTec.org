@@ -1,0 +1,8 @@
+Utilizar las siguiente teclas para el control de la interfaz.
+
+
+TECLA			FUNCION
+
+C			Cambiar modo de conexion
+S			Cambiar modo de cambio Switch
+Mouse			Colocar los cables y las compuertas
