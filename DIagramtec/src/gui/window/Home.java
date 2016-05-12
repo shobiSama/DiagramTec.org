@@ -17,6 +17,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -47,7 +50,9 @@ import logic.lista.Node;
 
 
 public class Home extends MainClass implements MenuListener, ActionListener, Runnable, MouseListener, KeyListener{
-	
+	Socket Cli;
+    DataOutputStream Salida;
+    DataInputStream Entrada;
 	private Graphics g;
 	private boolean running = true;
 	private int FPS = 60;
@@ -617,18 +622,39 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 			salidas.add(facade.getCantidadSalidas());
 			numComponentes.add(facade.getCantidadDeComponentes());
 			compuertas = facade.getCompuertas();
-			
-			try {
+			try{
 				archivo.generarArchivoXML(fileName, descripcion, numComponentes, entradas, salidas,compuertas);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+				Cli = new Socket("192.168.0.6",8080);
+			    DataInputStream Entrada = new DataInputStream(Cli.getInputStream()); 
+			    DataOutputStream Salida = new DataOutputStream(Cli.getOutputStream());
+			    DataOutputStream Salida1 = new DataOutputStream(Cli.getOutputStream());
+			    DataOutputStream Salida2= new DataOutputStream(Cli.getOutputStream());
+			    DataOutputStream Salida3 = new DataOutputStream(Cli.getOutputStream());
+                
+			    Salida.writeUTF(compuertas.toString());
+			    Salida1.writeUTF("hola bebebebebebe");
+			    Salida2.writeUTF("sdad");
+			    Salida3.writeUTF("");
 			
+				String msg = Entrada.readUTF();
+				System.out.println("\n" + msg);
+				System.out.println("llllll");
+				Cli.close();
+		}catch (Exception ex ){
+			System.out.println("Error Cliente"+ex.getMessage());
+		}
 			JOptionPane message = new JOptionPane();
 			message.showMessageDialog(null,"Archivo guardado con �xito", "",  JOptionPane.INFORMATION_MESSAGE);
+		//MainWindow s = new MainWindow();
+		//s.init();
+		this.dispose();
+	}
 			
-		}
+
+			
+			
+			
+		
 		
 		if(e.getSource().equals(cargar)){
 			String fileName = JOptionPane.showInputDialog("Enter file name:");
@@ -637,6 +663,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 		}
 		
 		if(e.getSource().equals(StartButton)){
+			
 			System.out.println("SIMULACI�N CIRCUITO");
 			facade.ejecutar();
 		}
