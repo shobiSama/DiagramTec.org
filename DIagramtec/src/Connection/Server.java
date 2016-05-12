@@ -49,6 +49,13 @@ public class Server extends Thread
 			InputStream entra = socket.getInputStream();
 			DataInputStream flujo = new DataInputStream(entra);
 			System.out.println(flujo.readUTF());	
+			InputStream entra2 = socket.getInputStream();
+			DataInputStream flujo2 = new DataInputStream(entra2);
+			System.out.println(flujo2.readUTF());
+			InputStream entra3 = socket.getInputStream();
+			DataInputStream flujo3 = new DataInputStream(entra3);
+			System.out.println(flujo3.readUTF());
+			
 		}
 		catch (Exception e)
 		{
@@ -65,6 +72,7 @@ public class Server extends Thread
 		{
 			OutputStream mensajess = socket.getOutputStream();
 			DataOutputStream flujoc= new DataOutputStream(mensajess);
+			//escribi siii
 			flujoc.writeUTF(message);
 
 		}

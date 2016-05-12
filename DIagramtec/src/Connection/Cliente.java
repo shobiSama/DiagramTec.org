@@ -115,6 +115,7 @@ public class Cliente extends JFrame implements ActionListener{
 				
 					String msg = Entrada.readUTF();
 					Mensajes.append("\n" + msg);
+					System.out.println("\n" + msg);
 					System.out.println("llllll");
 					Cli.close();
 			}catch (Exception ex ){
