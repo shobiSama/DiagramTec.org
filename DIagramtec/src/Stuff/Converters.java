@@ -29,7 +29,7 @@ public class Converters {
             ArregloNuevo[i] = Actual.getDato();
             Actual = Actual.getSiguiente();
         }
-        
+        //adfad
         ArregloNuevo[lista.getLenght()] = Actual.getDato();
         return ArregloNuevo;
     }
