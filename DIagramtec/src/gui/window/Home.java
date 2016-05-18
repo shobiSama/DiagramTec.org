@@ -621,6 +621,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 	        ArrayList<Integer> salidas = new ArrayList<>();
 	        ArrayList<Integer> numComponentes = new ArrayList<>();
 	        ArrayList<String> compuertas = new ArrayList<>();
+	        
 			
 			String fileName = JOptionPane.showInputDialog("Enter file name:");
 			
@@ -638,10 +639,8 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 			    DataOutputStream Salida2= new DataOutputStream(Cli.getOutputStream());
 			    DataOutputStream Salida3 = new DataOutputStream(Cli.getOutputStream());
                 
-			    Salida.writeUTF(compuertas.toString());
-			    Salida1.writeUTF(fileName.toString());
-			    Salida2.writeUTF(entradas.toString());
-			    Salida3.writeUTF(salidas.toString());
+			    Salida.writeUTF(compuertas.toString()+fileName.toString()+entradas.toString()+salidas.toString());
+		
 			
 				String msg = Entrada.readUTF();
 				System.out.println("\n" + msg);
