@@ -15,6 +15,7 @@ public class MainClass extends JFrame {
 	
 	JFrame ventanaM;
   public static void main(String args[]) throws UnknownHostException, IOException {
+	  //sdvsdvadvzdvzxv
 	  new Cliente("192.168.0.6",8080);
 	@SuppressWarnings("unused")
 	Home ventana = new Home("Editor de Diagramas Logicos");
