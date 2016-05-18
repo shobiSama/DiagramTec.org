@@ -1,6 +1,5 @@
 package gui.window;
 
-
 import gui.Circuit.Components.guiComponente;
 import gui.Circuit.Components.guiLoadComponente;
 import gui.facade.Facade;
@@ -36,6 +35,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -51,8 +51,8 @@ import logic.lista.Node;
 
 public class Home extends MainClass implements MenuListener, ActionListener, Runnable, MouseListener, KeyListener{
 	Socket Cli;
-    DataOutputStream Salida;
-    DataInputStream Entrada;
+	DataOutputStream Salida;
+	DataInputStream Entrada;
 	private Graphics g;
 	private boolean running = true;
 	private int FPS = 60;
@@ -60,12 +60,12 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 	public static Facade facade;
 	private JLabel bg;
 	private JButton StartButton;
-	private JPanel background,textPanel;
+	private JPanel background,textPanel,tex2;
 	private static JPanel paintPanel;
 	private JPanel panel0,panel1,panelGO;
 	private JMenuBar bar;
 	private JMenu Archivo,Editar;
-	private JMenuItem salir,nuevo,guardar,cargar,tabla;
+	private JMenuItem salir,nuevo,guardar,cargar,tabla,Entradas;
 	@SuppressWarnings("rawtypes")
 	private JList componentMenu;
 	private Icon AND_img,NAND_img,OR_img,NOR_img,NOT_img,XOR_img,XNOR_img,WIRE_img,WIRE2_img,WIRE3_img,light_img,Switch_img;
@@ -77,6 +77,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 	private static guiComponente GUIComponenteTemporal;
 	public static String strComponenteTemporal,strComponenteTemporalAnterior;
 	private int contadorElementosGUI = 0;
+	private JTextField textfield1,textfield2;
 	
 	@SuppressWarnings("unused")
 	private static SpringLayout LApaintPanel;
@@ -106,6 +107,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 		facade = new Facade();
 		//######################################## BARRA DE OPCIONES  ##################################################################
 		//************************ FILE **************************
+        
 		Archivo = new JMenu("File");
 		
 		nuevo = new JMenuItem("Nuevo");
@@ -148,6 +150,9 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 		bg.setOpaque(true);
 		bg.setBackground(new Color(0,150,0));
 		//bg.setPreferredSize(new Dimension(1200,700));
+		textfield1=new JTextField();
+        textfield1.setBounds(100,300,30,20);
+        
 		
 
 		FontA = new Font("Century Gothic", Font.BOLD, 2550);
@@ -192,8 +197,11 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 		
 		light_img = new ImageIcon(Home.class.getResource("/imgs/light_OFF.gif"));	//LIGHT OFF
 		JLabel light_label = new JLabel("Light Bulb",light_img,JLabel.LEFT);
-
+		textfield1=new JTextField(2);
 		
+   
+
+		//JPanel text = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JPanel AND_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JPanel NAND_panel= new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JPanel NOR_panel= new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -204,9 +212,9 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 		JPanel WIRE_panel= new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JPanel WIRE2_panel= new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JPanel WIRE3_panel= new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JPanel ON_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JPanel light_panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		
+		//JPanel text = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		//JPanel light_panel = new JPanel();
+		//text.add(textfield1);
 		AND_panel.add(AND_label);
 		NAND_panel.add(NAND_label);
 		OR_panel.add(OR_label);
@@ -220,7 +228,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 		
 		
 		Object[] panels = {AND_panel,NAND_panel,OR_panel,NOR_panel,NOT_panel,XOR_panel,XNOR_panel,
-						   WIRE_panel,WIRE2_panel,WIRE3_panel, ON_panel, light_panel};
+						   WIRE_panel,WIRE2_panel,WIRE3_panel};
 		
 		componentMenu.setListData(panels);
 		
@@ -247,6 +255,10 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 		textPanel = new JPanel();
 		textPanel.setBackground(Color.white);
 		textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
+		//tex2 = new JPanel();
+		
+        //tex2.add(textfield1);
+        
 		// TEXT PANEL - PANEL SUPERIOR 
 		panel0 = new JPanel();
 		panel0.setBackground(new Color(200,233,165));
@@ -257,24 +269,11 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 		LAPanel0.putConstraint(SpringLayout.NORTH, componentMenu, 15, SpringLayout.NORTH, panel0);
 		
 		// TEXT PANEL - PANEL CENTRAL
-		ConecctingLabel = new JLabel();
-		ConecctingLabel.setFont(FontB);
-	    ConecctingLabel.setText(StringConecctingFalse);
-	    ChangingLabel = new JLabel();
-	    ChangingLabel.setFont(FontB);
-	    ChangingLabel.setText(ChangingInputFalse);
 	    
 		panel1 = new JPanel();
 		panel1.setBackground(new Color(130,139,239));
 		panel1.setMaximumSize(new Dimension(1200,5000));
-		panel1.add(ConecctingLabel);
-		panel1.add(ChangingLabel);
 		panel1.setLayout(LAPanel1);
-		
-		LAPanel1.putConstraint(SpringLayout.NORTH, ConecctingLabel, 5, SpringLayout.NORTH, panel1);
-		LAPanel1.putConstraint(SpringLayout.WEST, ConecctingLabel, 5, SpringLayout.WEST, panel1);
-		LAPanel1.putConstraint(SpringLayout.NORTH, ChangingLabel, 30, SpringLayout.NORTH, panel1);
-		LAPanel1.putConstraint(SpringLayout.WEST, ChangingLabel, 5, SpringLayout.WEST, panel1);
 		
 		// TEXT PANEL - PANEL INFERIOR
 		panelGO = new JPanel();
@@ -567,7 +566,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 				ConecctingLabel.setText(StringConecctingFalse);
 			}
 		}
-		if(e.getKeyCode() == 83){ // S, Change Switch/COLOCAR imgs  1 y 0 NOTA
+		/*if(e.getKeyCode() == 83){ // S, Change Switch/COLOCAR imgs  1 y 0 NOTA
 			guiComponente tmp = findComponent(strComponenteTemporal);
 			if(tmp.getTipo() == "On" || tmp.getTipo() == "Off"){
 				if(tmp.getChangeFlag() == false){
@@ -587,7 +586,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 					changeFlagHome = false;
 				}
 			}
-		}
+		}*/
 		
 	}
 	
@@ -602,6 +601,14 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 			SimpleTable1 frame = new SimpleTable1(); 
 			frame.pack(); 
 			frame.setVisible(true); 
+		}
+		if(e.getSource().equals(nuevo)){
+			textfield frame = new textfield(); 
+			frame.pack(); 
+			frame.setSize(300, 200);
+			//frame.setBackground(Color.decode("#57ACAF"));
+			frame.setVisible(true);
+			
 		}
 			
 		if (e.getSource().equals(guardar)){
@@ -632,9 +639,9 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 			    DataOutputStream Salida3 = new DataOutputStream(Cli.getOutputStream());
                 
 			    Salida.writeUTF(compuertas.toString());
-			    Salida1.writeUTF("hola bebebebebebe");
-			    Salida2.writeUTF("sdad");
-			    Salida3.writeUTF("");
+			    Salida1.writeUTF(fileName.toString());
+			    Salida2.writeUTF(entradas.toString());
+			    Salida3.writeUTF(salidas.toString());
 			
 				String msg = Entrada.readUTF();
 				System.out.println("\n" + msg);
@@ -644,7 +651,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 			System.out.println("Error Cliente"+ex.getMessage());
 		}
 			JOptionPane message = new JOptionPane();
-			message.showMessageDialog(null,"Archivo guardado con �xito", "",  JOptionPane.INFORMATION_MESSAGE);
+			message.showMessageDialog(null,"Archivo guardado con ï¿½xito", "",  JOptionPane.INFORMATION_MESSAGE);
 		//MainWindow s = new MainWindow();
 		//s.init();
 		this.dispose();
@@ -664,7 +671,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 		
 		if(e.getSource().equals(StartButton)){
 			
-			System.out.println("SIMULACI�N CIRCUITO");
+			System.out.println("SIMULACIï¿½N CIRCUITO");
 			facade.ejecutar();
 		}
 		

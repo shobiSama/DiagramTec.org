@@ -55,6 +55,8 @@ public class Server extends Thread
 			InputStream entra3 = socket.getInputStream();
 			DataInputStream flujo3 = new DataInputStream(entra3);
 			System.out.println(flujo3.readUTF());
+			DataInputStream flujo4 = new DataInputStream(entra3);
+			System.out.println(flujo4.readUTF());
 			
 		}
 		catch (Exception e)
