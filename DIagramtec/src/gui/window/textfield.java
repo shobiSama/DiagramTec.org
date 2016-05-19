@@ -52,10 +52,20 @@ public class textfield extends JFrame{
 			}
         	
         });
+       
         
-        System.out.println(entrada1);;
+ 
 
  }
+	 public String getEntrada1(){
+     	return this.entrada1;
+     
+     }
+	 public String getEntrada2(){
+	     	return this.entrada2;
+	     
+	     }
+	 
 	public static void main(String ar[]) { 
 		JFrame paint=new textfield();
  		 //paint.setBounds(0,0,0,0);

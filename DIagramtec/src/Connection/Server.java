@@ -48,7 +48,7 @@ public class Server extends Thread
 		{
 			InputStream entra = socket.getInputStream();
 			DataInputStream flujo = new DataInputStream(entra);
-			System.out.println(flujo.readUTF());	
+			System.out.println(flujo.readInt());	
 			InputStream entra2 = socket.getInputStream();
 			DataInputStream flujo2 = new DataInputStream(entra2);
 			System.out.println(flujo2.readUTF());

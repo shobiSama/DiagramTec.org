@@ -397,6 +397,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 				strComponenteTemporal = "compuerta"+contadorElementosGUI;
 				listaComponentesGUI.insertPointer(tmpAND);
 				tmpAND.setCoordenadas((int) X2, (int) Y2);
+				System.out.println(X2+"   "+Y2);
 				canvasBG.add(tmpAND);
 				paintPanel.repaint();
 				//Secci�n L�gica
@@ -613,6 +614,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 			
 		if (e.getSource().equals(guardar)){
 			facade.ejecutar(); 				//EJECUTA LA SIMULACION DEL CIRCUITO PARA OBTENER LAS ENTRADAS Y SALIDAS CORRESPONDIENTES
+			//guiComponente componente= new guiComponente ("","");
 			generarXml archivo = new generarXml(); //Instancia un archivo xml
 			
 			ArrayList<String> Id = new ArrayList<>();
@@ -622,7 +624,7 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 	        ArrayList<Integer> numComponentes = new ArrayList<>();
 	        ArrayList<String> compuertas = new ArrayList<>();
 	        
-			
+	        guiComponente tmp = new guiComponente("","");
 			String fileName = JOptionPane.showInputDialog("Enter file name:");
 			
 			descripcion.add(JOptionPane.showInputDialog("Enter file description:"));
@@ -630,6 +632,8 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 			salidas.add(facade.getCantidadSalidas());
 			numComponentes.add(facade.getCantidadDeComponentes());
 			compuertas = facade.getCompuertas();
+			//System.out.println("el x  "+componente.getx());
+			//System.out.println("el y  "+componente.gety());
 			try{
 				archivo.generarArchivoXML(fileName, descripcion, numComponentes, entradas, salidas,compuertas);
 				Cli = new Socket("192.168.0.6",8080);
@@ -638,10 +642,11 @@ public class Home extends MainClass implements MenuListener, ActionListener, Run
 			    DataOutputStream Salida1 = new DataOutputStream(Cli.getOutputStream());
 			    DataOutputStream Salida2= new DataOutputStream(Cli.getOutputStream());
 			    DataOutputStream Salida3 = new DataOutputStream(Cli.getOutputStream());
-                
-			    Salida.writeUTF(compuertas.toString()+fileName.toString()+entradas.toString()+salidas.toString());
+                Salida.writeInt((int) tmp.getxx());
+                Salida1.writeInt((int) tmp.getyy());
+			    Salida2.writeUTF(compuertas.toString()+fileName.toString()+entradas.toString()+salidas.toString());
 		
-			
+			    
 				String msg = Entrada.readUTF();
 				System.out.println("\n" + msg);
 				System.out.println("llllll");

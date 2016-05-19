@@ -19,7 +19,8 @@ import javax.swing.JPanel;
 import dataAccess.ReadProperties;
 
 public class guiComponente extends JLabel implements MouseListener, MouseMotionListener {
-	
+	double xxx ;
+	double yyy;
 	private String nombre = "";
 	private String tipo = "";
 	private Point posicion = new Point(0,0);
@@ -113,7 +114,21 @@ public class guiComponente extends JLabel implements MouseListener, MouseMotionL
 		offset = new Point((int)current.getX() - (int) startDrag.getX(), (int) current.getY() - (int) startDrag.getY());
 		Point newLocation = new Point((int) (this.startPoint.getX() + offset.getX()), (int) (this.startPoint.getY() + offset.getY()));
 		this.setLocation(newLocation);
+		double xx =offset.getX();
+		this.xxx=xx;
+		double yy =offset.getY();
+		this.yyy=yy;
+		System.out.println(xx);
 	}
+	public double getxx(){
+		return this.xxx;
+	}
+	public double getyy(){
+		return this.yyy;
+	}
+	
+
+	
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
@@ -368,6 +383,10 @@ public class guiComponente extends JLabel implements MouseListener, MouseMotionL
 	public void setY(int y){ this.y = y; }
 	
 	//GETTERS
+
+	
+	public double getx(){ return x = this.getLocation().x; }
+	public double gety(){ return y = this.getLocation().y; }
 	
 	public double getEntradaX1(){ return entradaX1; }
 	public double getEntradaY1(){ return entradaY1; }

@@ -8,6 +8,7 @@ import java.net.UnknownHostException;
 import javax.swing.JFrame;
 
 import Connection.Cliente;
+import gui.Circuit.Components.guiComponente;
 
 
 
@@ -16,7 +17,9 @@ public class MainClass extends JFrame {
 	JFrame ventanaM;
   public static void main(String args[]) throws UnknownHostException, IOException {
 	  //sdvsdvadvzdvzxv
+	  guiComponente componente= new guiComponente ("","");
 	  new Cliente("192.168.0.6",8080);
+	  System.out.println(componente.getX());
 	@SuppressWarnings("unused")
 	Home ventana = new Home("Editor de Diagramas Logicos");
 	 
