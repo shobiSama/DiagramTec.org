@@ -34,6 +34,7 @@ public class Facade {
 	public void entradas(String a, String b){
 		String entrada1=a;
 		String entrada2=b;
+		System.out.println(entrada1+"el aaa "+entrada2+"el bbb");
 		try
 		{
 		//Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
@@ -115,7 +116,6 @@ public class Facade {
 	}
 
 	public void correr(ArrayList<String> Lista) {
-		circuito.comprobarCircuito();
 		String entra1;
 		String entra2;
 		
@@ -130,6 +130,7 @@ public class Facade {
 		{
 	    int aa= Integer.parseInt(entra1);
 		this.nn=aa;
+		System.out.println(entra1+"entrada1");
 		}
 		}
 		//Si se causa un error al leer cae aqui
@@ -149,6 +150,7 @@ public class Facade {
 			int bb= Integer.parseInt(entra2);
 			this.mm=bb;
 	
+		System.out.println(entra2+"entrada2");
 		}
 		}
 		//Si se causa un error al leer cae aqui
@@ -374,3 +376,4 @@ public class Facade {
 
 	
 }
+

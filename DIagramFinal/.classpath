@@ -3,9 +3,5 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="src" path="Resources"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/ShobiPc/git/DiagramTec.org/DIagramtec/src/jars/jackson-annotations-2.0.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/ShobiPc/git/DiagramTec.org/DIagramtec/src/jars/jackson-core-2.0.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/ShobiPc/git/DiagramTec.org/DIagramtec/src/jars/jackson-databind-2.0.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/ShobiPc/git/DiagramTec.org/DIagramtec/src/jars/gson-2.3.1 (1).jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
